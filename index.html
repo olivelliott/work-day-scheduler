@@ -7,19 +7,136 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.cs" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Work Day Scheduler</title>
   </head>
 
   <body>
-    <header class="jumbotron">
-      <h1 class="display-3">Work Day Scheduler</h1>
-      <p class="lead">A simple calendar app for scheduling your work day</p>
-      <p id="currentDay" class="lead"></p>
-    </header>
-    <div class="container">
-      <!-- Timeblocks go here -->
-    </div>
+    <div>
+      <header class="jumbotron">
+        <h1>Work Day Scheduler</h1>
+        <p class="lead">A simple calendar app for scheduling your work day</p>
+        <p id="currentDay" class="lead"></p>
+      </header>
+      <div class="row">
+        <div class="card col-2 my-auto p-4 border-left-0">
+          <p>9:00 AM</p>
+        </div>
+        <div class="card col-8 border-left-0">
+          <input class="p-4 my-auto border-0 bg-light rounded" type="text"></input>
+        </div>
+        <div class="card col-2 my-auto p-4 bg-info border-left-0">
+        <button class="btn btn-info">Save</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="card col-2 my-auto p-4 border-left-0">
+          <p>10:00 AM</p>
+        </div>
+        <div class="card col-8 border-left-0">
+          <input class="p-4 my-auto border-0 bg-light rounded" type="text"></input>
+        </div>
+        <div class="card col-2 my-auto p-4 bg-info border-left-0">
+        <button class="btn btn-info">Save</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="card col-2 my-auto p-4 border-left-0">
+          <p>11:00 AM</p>
+        </div>
+        <div class="card col-8 border-left-0">
+          <input class="p-4 my-auto border-0 bg-light rounded" type="text"></input>
+        </div>
+        <div class="card col-2 my-auto p-4 bg-info border-left-0">
+        <button class="btn btn-info">Save</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="card col-2 my-auto p-4 border-left-0">
+          <p>12:00 PM</p>
+        </div>
+        <div class="card col-8 border-left-0">
+          <input class="p-4 my-auto border-0 bg-light rounded" type="text"></input>
+        </div>
+        <div class="card col-2 my-auto p-4 bg-info border-left-0">
+        <button class="btn btn-info">Save</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="card col-2 my-auto p-4 border-left-0">
+          <p>1:00 PM</p>
+        </div>
+        <div class="card col-8 border-left-0">
+          <input class="p-4 my-auto border-0 bg-light rounded" type="text"></input>
+        </div>
+        <div class="card col-2 my-auto p-4 bg-info border-left-0">
+        <button class="btn btn-info">Save</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="card col-2 my-auto p-4 border-left-0">
+          <p>2:00 PM</p>
+        </div>
+        <div class="card col-8 border-left-0">
+          <input class="p-4 my-auto border-0 bg-light rounded" type="text"></input>
+        </div>
+        <div class="card col-2 my-auto p-4 bg-info border-left-0">
+        <button class="btn btn-info">Save</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="card col-2 my-auto p-4 border-left-0">
+          <p>3:00 PM</p>
+        </div>
+        <div class="card col-8 border-left-0">
+          <input class="p-4 my-auto border-0 bg-light rounded" type="text"></input>
+        </div>
+        <div class="card col-2 my-auto p-4 bg-info border-left-0">
+        <button class="btn btn-info">Save</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="card col-2 my-auto p-4 border-left-0">
+          <p>4:00 PM</p>
+        </div>
+        <div class="card col-8 border-left-0">
+          <input class="p-4 my-auto border-0 bg-light rounded" type="text"></input>
+        </div>
+        <div class="card col-2 my-auto p-4 bg-info border-left-0">
+        <button class="btn btn-info">Save</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="card col-2 my-auto p-4 border-left-0">
+          <p>5:00 PM</p>
+        </div>
+        <div class="card col-8 border-left-0">
+          <input class="p-4 my-auto border-0 bg-light rounded" type="text"></input>
+        </div>
+        <div class="card col-2 my-auto p-4 bg-info border-left-0">
+        <button class="btn btn-info">Save</button>
+        </div>
+      </div>
+
+
+    <!-- </div>
+    <div class="container row w-100">
+        <div class="card bg-dark col-2">
+              <h4 class="card-text text-light my-auto">9:00 AM</h4>
+          </div>
+          <div class="card bg-dark col-6">
+            <form>
+              <input type="text" class="col-8 p-3 rounded"></input>
+            </form>
+          </div>
+          <div class="card bg-dark col-4">
+            <button class="btn btn-info">Save</button>
+          </div>
+        </div>
+      </div>
+
+    </div> -->
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
