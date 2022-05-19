@@ -3,19 +3,70 @@ var scheduleContainerEl = $('.schedule-container');
 var scheduleTimeEl = $('.hour')
 var taskInputContainerEl = $('.description');
 var saveButtonContainerEl = $('.saveBtn');
-var scheduleTimesEl = ['9:00am', '10:00am','11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm',  '4:00pm', '5:00pm'];
 var scheduleTasksEl = [];
-var toDoEl = {};
+
 
 
 function createTime () {
     var timeDisplay = moment().format('ddd, MMM do YYYY, h:mm a');
     currentTimeEl.append(timeDisplay);
-    console.log(timeDisplay);
-    console.log(currentTimeEl)
 }
 
+var loadTasks = function() {
+    scheduleTasksEl = JSON.parse(localStorage.getItem('scheduleTasksEl'));
+    if (!scheduleTasksEl) {
+        scheduleTasksEl = {
+            text: [],
+            time: [],
+            index: []
+        };
+    };
+}
+
+var saveTasks = function() {
+        localStorage.setItem(scheduleTasksEl, JSON.stringify(scheduleTasksEl));
+}
+
+$(saveButtonContainerEl).on('click', function () {
+    var newTaskContent = $(this).siblings('.description').val().trim();
+    var time = $(this).parent().attr('id');
+    var index = $(this).closest('.time-block').index();
+    scheduleTasksEl.push({
+        text: newTaskContent,
+        time: time,
+        index: index
+    }); saveTasks();
+    // newTaskContent[time][index].text = text;
+});
+
+// $('#nine-am .description').val(localStorage.getItem(time, newTaskContent));
+
+// })
+// function taskTimeTracker() {
+//     var timeNow = moment().hour();
+//     $('.time-block').each(function () {
+
+//     })
+// }
 createTime();
+
+
+
+
+
+// $('.saveBtn').click(function () {
+//     var text = $(this).closest(".description").val().trim();
+//     // var status = $(this).closest(".time-block").attr("id").replace("list-", "");
+//   var index = $(this).closest(".list-group-item").index();
+//   tasks[index].text = "text";
+// //   saveTasks();
+//   var taskP = $("<p>")
+//     .addClass("m-1")
+//     .text(text);
+//   $(this).replaceWith(taskP)
+// });
+
+
 
 
 
