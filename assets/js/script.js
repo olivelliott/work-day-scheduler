@@ -12,6 +12,7 @@ function createTime () {
     currentTimeEl.append(timeDisplay);
 }
 
+
 var loadTasks = function() {
     scheduleTasksEl = JSON.parse(localStorage.getItem('scheduleTasksEl'));
     if (!scheduleTasksEl) {
@@ -29,6 +30,8 @@ var saveTasks = function() {
 
 $(saveButtonContainerEl).on('click', function () {
     var newTaskContent = $(this).siblings('.description').val().trim();
+    var textInput = $('<textarea>').addClass('col-md-10 description').val(newTaskContent);
+    $(this).siblings('.description').replaceWith(textInput);
     var time = $(this).parent().attr('id');
     var index = $(this).closest('.time-block').index();
     scheduleTasksEl.push({
@@ -39,16 +42,23 @@ $(saveButtonContainerEl).on('click', function () {
     // newTaskContent[time][index].text = text;
 });
 
-// $('#nine-am .description').val(localStorage.getItem(time, newTaskContent));
+function taskTimeTracker() {
+    var timeNow = moment().hours();
+    $('.time-block').each(function () {
+        var currentHour = parseInt($(this).attr("id"));
 
-// })
-// function taskTimeTracker() {
-//     var timeNow = moment().hour();
-//     $('.time-block').each(function () {
+        if (currentHour > timeNow) {
+            $(this).addClass('future');
+        } else if (currentHour === timeNow) {
+            $(this).addClass('present');
+        } else {
+            $(this).addClass('past');
+        }
+    })
+};
 
-//     })
-// }
 createTime();
+taskTimeTracker();
 
 
 
