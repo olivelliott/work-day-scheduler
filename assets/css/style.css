@@ -2,6 +2,7 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   line-height: 1;
+
 }
 
 textarea{
@@ -28,14 +29,14 @@ textarea{
 .time-block{
   text-align: center;
   border-radius: 15px;
-  margin-top: 10px;
+  /* margin-top: 10px; */
 }
 
 .row {
   white-space: pre-wrap;
   height: 80px;
   border-top: 1px solid white;
-  display: flex;
+  /* display: flex; */
 }
 
 .hour {
@@ -71,8 +72,3 @@ textarea{
   font-size: 20px;
   transition: all .3s ease-in-out;
 }
-
-/* .schedule-container {
-  display: flex;
-  justify-content: space-between;
-} */

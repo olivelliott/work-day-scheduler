@@ -2,7 +2,7 @@ var saveBtnEl = $('.saveBtn');
 
 $("#currentDay").text(moment().format('dddd MMMM Do YYYY, h:mm a'));
 
-var checkTimeStatus = function() {
+function checkTimeStatus() {
     var hour = moment().hours();
     $(".time-block").each(function() {
         var currHour = parseInt($(this).attr("id"));
@@ -26,35 +26,15 @@ var loadTasks = function() {
     });
 }
 
-
 $(saveBtnEl).on('click', function () {
     var time = $(this).siblings(".hour").text();
     var plan = $(this).siblings(".plan").val();
     localStorage.setItem(time, plan);
 });
-    // newTaskContent[time][index].text = text;
-
 
 checkTimeStatus();
-setInterval(checkTimeStatus(), (1000 * 60) * 5);
+// setInterval(checkTimeStatus(), (1000 * 60) * 5);
 loadTasks();
-
-
-
-
-
-// $('.saveBtn').click(function () {
-//     var text = $(this).closest(".description").val().trim();
-//     // var status = $(this).closest(".time-block").attr("id").replace("list-", "");
-//   var index = $(this).closest(".list-group-item").index();
-//   tasks[index].text = "text";
-// //   saveTasks();
-//   var taskP = $("<p>")
-//     .addClass("m-1")
-//     .text(text);
-//   $(this).replaceWith(taskP)
-// });
-
 
 
 
