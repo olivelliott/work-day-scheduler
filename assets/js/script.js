@@ -2,23 +2,23 @@ var currentTimeEl = $('#currentDay')
 var scheduleContainerEl = $('.schedule-container');
 var scheduleTimeEl = $('.hour')
 var taskInputContainerEl = $('.description');
-var saveButtonContainerEl = $('.saveBtn');
+var saveBtnEl = $('.saveBtn');
 var scheduleTasksEl = [];
 
 
-var saveBtn = $(".saveBtn");
-// current day is displayed at the top of the calendar
-$("#currentDay").text(moment().format('dddd MMMM Do YYYY, h:mm a'));
 
-// each time block is color-coded to indicate whether it is in the past, present, or future
-function timeBlockColor() {
+function createTime () {
+    var timeDisplay = moment().format('ddd, MMM do YYYY, h:mm a');
+    currentTimeEl.append(timeDisplay);
+}
+// $("#currentDay").text(moment().format('dddd MMMM Do YYYY'));
+
+var checkTimeStatus = function() {
     var hour = moment().hours();
-console.log(hour);
     $(".time-block").each(function() {
         var currHour = parseInt($(this).attr("id"));
-
-        console.log(this);
-
+        console.log(this)
+        console.log(currHour)
         if (currHour > hour) {
             $(this).addClass("future");
         } else if (currHour === hour) {
@@ -29,50 +29,7 @@ console.log(hour);
     })
 };
 
-// WHEN I click the save button for that time block
-saveBtn.on("click", function() {
-
-    // console.log(this); //save button
-    var time = $(this).siblings(".hour").text();
-    var plan = $(this).siblings(".plan").val();
-
-    // THEN the text for that event is saved in local storage
-    localStorage.setItem(time, plan);
-});
-
-// WHEN I refresh the page
-// THEN the saved events persist
-function usePlanner() {
-
-    $(".hour").each(function() {
-        var currHour = $(this).text();
-        var currPlan = localStorage.getItem(currHour);
-
-        // console.log(this);
-        // console.log(currHour);
-
-        if(currPlan !== null) {
-            $(this).siblings(".plan").val(currPlan);
-        }
-    });
-}
-
-/**
- * CALL FUNCTIONS
- */
-
-timeBlockColor();
-usePlanner();
-
-
-// // function createTime () {
-//     var timeDisplay = moment().format('ddd, MMM do YYYY, h:mm a');
-//     currentTimeEl.append(timeDisplay);
-// }
-// $("#currentDay").text(moment().format('dddd MMMM Do YYYY'));
-
-// var checkTimeStatus = function(taskEl) {
-//     var currentTime =  moment().format('h:mm a');
+checkTimeStatus();
 //     var timeBlockElements = $('.text-area');
 //     $(timeBlockElements).removeClass('past present future');
 //     for (var i = 0; i < timeBlockElements.length; i++) {
@@ -82,18 +39,16 @@ usePlanner();
 //         // console.log(currentTime)
 //         // var newId = document.getElementById(timeBlockElements[i].id);
 //         $(eachTimeBlock).removeClass('present', 'past', 'future');
-//         if (moment().isAfter(currentTime)) {
-//             $('timeBlockElements').addClass("past");
+//         if (currentTime > eachTimeBlock) {
+//             $(timeBlockElements).addClass("past");
 //           }
 //         else if (moment().isBefore(currentTime)) {
 //             $(timeBlockElements).addClass('past');
-//         // } else (moment() === currentTime) {
-//         //     $(timeBlockElements).addClass('future');
-//         // }
-//     };
-// }}
+//         } 
+        
+// };
 
-// setInterval(checkTimeStatus(), (1000 * 60) * 5);
+setInterval(checkTimeStatus(), (1000 * 60) * 5);
     // $(".time-block").each(function() {
     //     var currHour = parseInt($(this).attr("id"));
     //     if (hour > currentTimeEl) {
@@ -121,25 +76,22 @@ var saveTasks = function() {
         localStorage.setItem(scheduleTasksEl, JSON.stringify(scheduleTasksEl));
 }
 
-$(saveButtonContainerEl).on('click', function () {
-    var newTaskContent = $(this).siblings('.description').val().trim();
-    var textInput = $('<textarea>').addClass('col-md-10 description').val(newTaskContent);
-    $(this).siblings('.description').replaceWith(textInput);
-    var time = $(this).parent().attr('id');
-    var index = $(this).closest('.time-block').index();
-    scheduleTasksEl.push({
-        text: newTaskContent,
-        time: time,
-        index: index
-    }); saveTasks();
-    // newTaskContent[time][index].text = text;
+$(saveBtnEl).on('click', function () {
+    // console.log(this); //save button
+    var time = $(this).siblings(".hour").text();
+    var plan = $(this).siblings(".plan").val();
+
+    // THEN the text for that event is saved in local storage
+    localStorage.setItem(time, plan);
 });
+    // newTaskContent[time][index].text = text;
 
 
 
 
-// createTime();
-// checkTimeStatus();
+
+createTime();
+checkTimeStatus();
 
 
 
