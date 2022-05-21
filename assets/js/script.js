@@ -6,11 +6,104 @@ var saveButtonContainerEl = $('.saveBtn');
 var scheduleTasksEl = [];
 
 
+var saveBtn = $(".saveBtn");
+// current day is displayed at the top of the calendar
+$("#currentDay").text(moment().format('dddd MMMM Do YYYY, h:mm a'));
 
-function createTime () {
-    var timeDisplay = moment().format('ddd, MMM do YYYY, h:mm a');
-    currentTimeEl.append(timeDisplay);
+// each time block is color-coded to indicate whether it is in the past, present, or future
+function timeBlockColor() {
+    var hour = moment().hours();
+console.log(hour);
+    $(".time-block").each(function() {
+        var currHour = parseInt($(this).attr("id"));
+
+        console.log(this);
+
+        if (currHour > hour) {
+            $(this).addClass("future");
+        } else if (currHour === hour) {
+            $(this).addClass("present");
+        } else {
+            $(this).addClass("past");
+        }
+    })
+};
+
+// WHEN I click the save button for that time block
+saveBtn.on("click", function() {
+
+    // console.log(this); //save button
+    var time = $(this).siblings(".hour").text();
+    var plan = $(this).siblings(".plan").val();
+
+    // THEN the text for that event is saved in local storage
+    localStorage.setItem(time, plan);
+});
+
+// WHEN I refresh the page
+// THEN the saved events persist
+function usePlanner() {
+
+    $(".hour").each(function() {
+        var currHour = $(this).text();
+        var currPlan = localStorage.getItem(currHour);
+
+        // console.log(this);
+        // console.log(currHour);
+
+        if(currPlan !== null) {
+            $(this).siblings(".plan").val(currPlan);
+        }
+    });
 }
+
+/**
+ * CALL FUNCTIONS
+ */
+
+timeBlockColor();
+usePlanner();
+
+
+// // function createTime () {
+//     var timeDisplay = moment().format('ddd, MMM do YYYY, h:mm a');
+//     currentTimeEl.append(timeDisplay);
+// }
+// $("#currentDay").text(moment().format('dddd MMMM Do YYYY'));
+
+// var checkTimeStatus = function(taskEl) {
+//     var currentTime =  moment().format('h:mm a');
+//     var timeBlockElements = $('.text-area');
+//     $(timeBlockElements).removeClass('past present future');
+//     for (var i = 0; i < timeBlockElements.length; i++) {
+//         var eachTimeBlock = timeBlockElements[i];
+//         // var taskStatus =
+//         // console.log(timeBlockElements[i]);
+//         // console.log(currentTime)
+//         // var newId = document.getElementById(timeBlockElements[i].id);
+//         $(eachTimeBlock).removeClass('present', 'past', 'future');
+//         if (moment().isAfter(currentTime)) {
+//             $('timeBlockElements').addClass("past");
+//           }
+//         else if (moment().isBefore(currentTime)) {
+//             $(timeBlockElements).addClass('past');
+//         // } else (moment() === currentTime) {
+//         //     $(timeBlockElements).addClass('future');
+//         // }
+//     };
+// }}
+
+// setInterval(checkTimeStatus(), (1000 * 60) * 5);
+    // $(".time-block").each(function() {
+    //     var currHour = parseInt($(this).attr("id"));
+    //     if (hour > currentTimeEl) {
+    //         $(this).addClass("future");
+    //     } else if (hour === currentTimeEl) {
+    //         $(this).addClass("present");
+    //     } else {
+    //         $(this).addClass("past");
+    //     }
+    // })
 
 
 var loadTasks = function() {
@@ -42,23 +135,11 @@ $(saveButtonContainerEl).on('click', function () {
     // newTaskContent[time][index].text = text;
 });
 
-function taskTimeTracker() {
-    var timeNow = moment().hours();
-    $('.time-block').each(function () {
-        var currentHour = parseInt($(this).attr("id"));
 
-        if (currentHour > timeNow) {
-            $(this).addClass('future');
-        } else if (currentHour === timeNow) {
-            $(this).addClass('present');
-        } else {
-            $(this).addClass('past');
-        }
-    })
-};
 
-createTime();
-taskTimeTracker();
+
+// createTime();
+// checkTimeStatus();
 
 
 
