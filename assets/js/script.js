@@ -1,24 +1,11 @@
-var currentTimeEl = $('#currentDay')
-var scheduleContainerEl = $('.schedule-container');
-var scheduleTimeEl = $('.hour')
-var taskInputContainerEl = $('.description');
 var saveBtnEl = $('.saveBtn');
-var scheduleTasksEl = [];
 
-
-
-function createTime () {
-    var timeDisplay = moment().format('ddd, MMM do YYYY, h:mm a');
-    currentTimeEl.append(timeDisplay);
-}
-// $("#currentDay").text(moment().format('dddd MMMM Do YYYY'));
+$("#currentDay").text(moment().format('dddd MMMM Do YYYY, h:mm a'));
 
 var checkTimeStatus = function() {
     var hour = moment().hours();
     $(".time-block").each(function() {
         var currHour = parseInt($(this).attr("id"));
-        console.log(this)
-        console.log(currHour)
         if (currHour > hour) {
             $(this).addClass("future");
         } else if (currHour === hour) {
@@ -29,69 +16,28 @@ var checkTimeStatus = function() {
     })
 };
 
-checkTimeStatus();
-//     var timeBlockElements = $('.text-area');
-//     $(timeBlockElements).removeClass('past present future');
-//     for (var i = 0; i < timeBlockElements.length; i++) {
-//         var eachTimeBlock = timeBlockElements[i];
-//         // var taskStatus =
-//         // console.log(timeBlockElements[i]);
-//         // console.log(currentTime)
-//         // var newId = document.getElementById(timeBlockElements[i].id);
-//         $(eachTimeBlock).removeClass('present', 'past', 'future');
-//         if (currentTime > eachTimeBlock) {
-//             $(timeBlockElements).addClass("past");
-//           }
-//         else if (moment().isBefore(currentTime)) {
-//             $(timeBlockElements).addClass('past');
-//         } 
-        
-// };
-
-setInterval(checkTimeStatus(), (1000 * 60) * 5);
-    // $(".time-block").each(function() {
-    //     var currHour = parseInt($(this).attr("id"));
-    //     if (hour > currentTimeEl) {
-    //         $(this).addClass("future");
-    //     } else if (hour === currentTimeEl) {
-    //         $(this).addClass("present");
-    //     } else {
-    //         $(this).addClass("past");
-    //     }
-    // })
-
-
 var loadTasks = function() {
-    scheduleTasksEl = JSON.parse(localStorage.getItem('scheduleTasksEl'));
-    if (!scheduleTasksEl) {
-        scheduleTasksEl = {
-            text: [],
-            time: [],
-            index: []
-        };
-    };
+    $(".hour").each(function() {
+        var currHour = $(this).text();
+        var currPlan = localStorage.getItem(currHour);
+        if(currPlan !== null) {
+            $(this).siblings(".plan").val(currPlan);
+        }
+    });
 }
 
-var saveTasks = function() {
-        localStorage.setItem(scheduleTasksEl, JSON.stringify(scheduleTasksEl));
-}
 
 $(saveBtnEl).on('click', function () {
-    // console.log(this); //save button
     var time = $(this).siblings(".hour").text();
     var plan = $(this).siblings(".plan").val();
-
-    // THEN the text for that event is saved in local storage
     localStorage.setItem(time, plan);
 });
     // newTaskContent[time][index].text = text;
 
 
-
-
-
-createTime();
 checkTimeStatus();
+setInterval(checkTimeStatus(), (1000 * 60) * 5);
+loadTasks();
 
 
 
