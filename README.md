@@ -1,7 +1,7 @@
 # Work Day Scheduler 
-## Goals
+## Goal
 
-### Create a simple calendar application that allows a user to save events for each hour of the day. Tasks are saved to local storage and persist after refreshing the page. Time blocks are color coded to indicate the status of the task.
+Create a simple calendar application that allows a user to save events for each hour of the day. Tasks are saved to local storage and persist after refreshing the page. Time blocks are color coded to indicate the status of the task.
 
 ## Application
 
@@ -22,4 +22,4 @@
 ![My Website](./assets/images/Work%20Day%20Scheduler.gif)
 
 
-[Link](https://olivelliott.github.io/work-day-scheduler/)
+[Link to the Page](https://olivelliott.github.io/work-day-scheduler/)
