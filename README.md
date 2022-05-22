@@ -19,6 +19,11 @@ Create a simple calendar application that allows a user to save events for each 
 * jQuery
 * Moment.js
 
+## Color Hex
+* Past Time Block ↔️  #DDDDDD
+* Present Time Block ↔️  #fffbdb
+* Future Time Block ↔️  #addec8
+
 ![My Website](./assets/images/Work%20Day%20Scheduler.gif)
 
 
