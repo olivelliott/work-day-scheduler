@@ -16,11 +16,7 @@ function checkTimeStatus() {
     })
 };
 
-checkTimeStatus();
-setInterval(checkTimeStatus(), (1000 * 60) * 5);
-
-
-var loadTasks = function() {
+function loadTasks() {
     $('.hour').each(function() {
         var currentHour = $(this).text();
         var currentTask = localStorage.getItem(currentHour);
@@ -36,6 +32,8 @@ $(saveBtnEl).on('click', function () {
     localStorage.setItem(time, plan);
 });
 
+checkTimeStatus();
+setInterval(checkTimeStatus(), (1000 * 60) * 5);
 loadTasks();
 
 
