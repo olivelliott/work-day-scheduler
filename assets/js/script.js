@@ -7,11 +7,11 @@ function checkTimeStatus() {
     $('.time-block').each(function() {
         var timeBlockHour = parseInt($(this).attr('id').split("-")[1]);
         if (timeBlockHour < currentHour) {
-            $(this).addClass('future');
+            $(this).addClass('past');
         } else if (timeBlockHour === currentHour) {
             $(this).addClass('present');
         } else {
-            $(this).addClass('past');
+            $(this).addClass('future');
         }
     })
 };
